@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo</title>
+  <link rel="stylesheet" href="css/styles.css" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script>
+
+    // #1 Variables
+    let post = document.getElementById("ButtonPost");
+    let clear = document.getElementById("ButtonClear");
+    let mark = document.getElementById("ButtonMark");
+    let del = document.getElementById("ButtonDelete");
+
+    // #2 Event Listeners
+    post.addEventListener("click", TodoPost);
+    clear.addEventListener("click", TodoClear);
+    mark.addEventListener("click", TodoMark);
+    del.addEventListener("click", TodoDel);
+
+    // #3 Funciones
+    function TodoPost(e)
+    {
+      
+      e.preventDefault();
+      
+      // Necesito obtener el valor del TextArea
+      var todo = document.getElementById("todoText").value;
+      var list = document.getElementById("todoList");
+      
+      // Representa el div donde esta la lista 
+      var currentListHTML = list.innerHTML;
+      list.innerHTML = currentListHTML + '<input type = "checkbox" name = "todo" /> ' + todo + "<br>";
+     
+      
+    }
+
+    function TodoMark(e)
+    {
+      
+      var todos = document.getElementsByName("todo");
+      
+      for(var i = 0; i < todos.length; i++)
+      {
+          
+        todos[i].checked = true;  
+        
+      }
+      
+    }
+
+    function TodoClear(e)
+    {
+      
+      var todos = document.getElementsByName("todo");
+      
+      for(var i = 0; i < todos.length; i++)
+      {
+          
+        todos[i].checked = false;  
+        
+      }
+      
+    }
+
+    function TodoDel()
+    {
+      
+      var list = document.getElementById("todoList");
+      list.innerHTML = "";
+
+      
+      
+    }
+
+  </script>
+  
+</head>
+  <body>
+    <header class="navbar navbar-default">
+      <h1 class="todoTitle">
+        Todo List
+      </h1>
+    </header>
+    <main class="wrapper" role="main">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3>
+                  New todo
+                </h3>
+              </div>
+              <div class="panel-body">
+                <form class="todoForm">
+                  <fieldset>
+                    <textarea class="newTodo form-control"></textarea>
+                    <button type="submit" class="submitButton"> 
+                      Post Todo
+                    </button>
+                  </fieldset>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3>List of todo's</h3>
+              </div>
+              <div class="panel-body" class="listOfTodos">
+
+              </div>
+              <div class="buttons">
+                <button class="clearButton btn-info"> 
+                  Clear all Todo's
+                </button>
+                <button class="markAllButton btn-success"> 
+                  Mark all Todo's
+                </button>
+                <button class="deleteButton btn-danger"> 
+                  Delete all Todo's
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer role="footer" class="footer">
+      Todo list application
+    </footer>
+  </body>
+</html>
+
